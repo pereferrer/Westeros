@@ -16,6 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //Lanzar la App Aquí
+        
+        window = UIWindow(frame: UIScreen.main.bounds)//Decimos que espacio va ocupar la pantalla. Aqui el tamaño de la pantalla
+        window?.makeKeyAndVisible() //Toda window necesita un root view controller
+        window?.backgroundColor = .cyan
+        
+        let rootViewController = UIViewController()
+        window?.rootViewController = rootViewController
+        
+        
+        
+        
         return true
     }
 

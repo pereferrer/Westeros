@@ -20,13 +20,20 @@ class HouseTests: XCTestCase {
     var robb:Person!
     var arya:Person!
     var tyrion:Person!
+    
+    var starkURL:URL!
+    var lannisterURL:URL!
 
     override func setUp() {
+        
+        starkURL = URL(string: "https://awoiaf.westeros.org/index.php/House_Stark")!
+        lannisterURL = URL(string: "https://awoiaf.westeros.org/index.php/House_Lannister")!
+        
         starkSigil = Sigil(description: "Lobo huargo", image: UIImage())
         lannisterSigil = Sigil(description: "León Rampante", image: UIImage())
         
-        starkHouse = House(name: "Stark", sigil: starkSigil, words: "Winter is coming")
-        lannisterHouse = House(name: "Lannister", sigil: lannisterSigil, words: "Oye mi rugido")
+        starkHouse = House(name: "Stark", sigil: starkSigil, words: "Winter is coming", url: starkURL)
+        lannisterHouse = House(name: "Lannister", sigil: lannisterSigil, words: "Oye mi rugido", url: lannisterURL)
         
         robb = Person(name: "Robb", alias: "El joven Lobo", house: starkHouse)
         arya = Person(name: "Arya", house: starkHouse)
@@ -68,7 +75,7 @@ class HouseTests: XCTestCase {
         //identidad
         XCTAssertEqual(starkHouse, starkHouse)
         //Igualdad
-        let jinxed = House(name: "Stark", sigil: starkSigil, words: "Winter is coming")
+        let jinxed = House(name: "Stark", sigil: starkSigil, words: "Winter is coming", url: starkURL)
         XCTAssertEqual(starkHouse, jinxed)
         //Desigualdad
         //Desigualdad
@@ -78,5 +85,10 @@ class HouseTests: XCTestCase {
     func testHouseComparison(){
         XCTAssertLessThan(lannisterHouse, starkHouse)
         XCTAssertGreaterThan(starkHouse, lannisterHouse)
+    }
+    
+    func testHouseAddPersonsAtOnce(){
+        starkHouse.add(persons: robb, arya, tyrion)
+        XCTAssertEqual(starkHouse.count, 2)
     }
 }

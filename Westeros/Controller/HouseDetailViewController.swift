@@ -34,12 +34,38 @@ final class HouseDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupUI()
         syncModelWithView()
     }
     
+    
+}
+
+extension HouseDetailViewController {
     private func syncModelWithView(){
         houseNameLabel.text = "House \(model.name)"
         sigilImageView.image = model.sigil.image
         wordsLabel.text = model.words
+    }
+}
+
+extension HouseDetailViewController {
+    private func setupUI(){
+        //Creo mi boton
+        let wikiButton = UIBarButtonItem(title: "Wiki",
+                                         style: .done,
+                                         target: self, //El target es donde esta definido el metodo del action
+                                         action: #selector(displayWiki))
+        
+        //Lo añado a la navigation bar
+        navigationItem.rightBarButtonItem = wikiButton
+    }
+    
+    @objc private func displayWiki(){
+        //Crear el wiki vc
+        let wikiViewController = WikiViewController(model: model)
+        
+        //Mostrarlo mediante un push navigation Controller
+        navigationController?.pushViewController(wikiViewController, animated: true)        
     }
 }

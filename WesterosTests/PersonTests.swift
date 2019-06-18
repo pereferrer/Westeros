@@ -17,17 +17,23 @@ class PersonTests: XCTestCase {
     var lannisterHouse:House!
     var ned:Person!
     var tyrion:Person!
+    var starkURL:URL!
+    var lannisterURL:URL!
     
     override func setUp() {
+        
+        starkURL = URL(string: "https://awoiaf.westeros.org/index.php/House_Stark")!
+        lannisterURL = URL(string: "https://awoiaf.westeros.org/index.php/House_Lannister")!
+        
         starkSigil = Sigil(description: "Lobo guardo", image: UIImage())
         lannisterSigil = Sigil(description: "León Rampante", image: UIImage())
         
         starkHouse = House(name: "Stark",
                                sigil: starkSigil,
-                               words: "Winter is coming"
+                               words: "Winter is coming", url: starkURL
         )
         
-        lannisterHouse = House(name: "Lannister", sigil: lannisterSigil, words: "Oye mi rugido")
+        lannisterHouse = House(name: "Lannister", sigil: lannisterSigil, words: "Oye mi rugido", url: lannisterURL)
         
         ned = Person(name: "Eddard", alias: "Ned", house: starkHouse)
         tyrion = Person(name: "Tyrion", alias: "El gnomo", house: starkHouse)

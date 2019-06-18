@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D10A56BF22B977A4000721CC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D10A56BD22B9772C000721CC /* WebKit.framework */; };
+		D10A56C222B97A37000721CC /* WikiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A56C022B97A37000721CC /* WikiViewController.swift */; };
+		D10A56C322B97A37000721CC /* WikiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D10A56C122B97A37000721CC /* WikiViewController.xib */; };
+		D10A56C622B98970000721CC /* HouseListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A56C422B98970000721CC /* HouseListTableViewController.swift */; };
+		D10A56C722B98970000721CC /* HouseListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D10A56C522B98970000721CC /* HouseListTableViewController.xib */; };
 		D11B962522AF0B1800DACD3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B962422AF0B1800DACD3E /* AppDelegate.swift */; };
 		D11B962C22AF0B1A00DACD3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D11B962B22AF0B1A00DACD3E /* Assets.xcassets */; };
 		D11B962F22AF0B1A00DACD3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D11B962D22AF0B1A00DACD3E /* LaunchScreen.storyboard */; };
@@ -33,6 +38,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D10A56BD22B9772C000721CC /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		D10A56C022B97A37000721CC /* WikiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiViewController.swift; sourceTree = "<group>"; };
+		D10A56C122B97A37000721CC /* WikiViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WikiViewController.xib; sourceTree = "<group>"; };
+		D10A56C422B98970000721CC /* HouseListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseListTableViewController.swift; sourceTree = "<group>"; };
+		D10A56C522B98970000721CC /* HouseListTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseListTableViewController.xib; sourceTree = "<group>"; };
 		D11B962122AF0B1800DACD3E /* Westeros.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Westeros.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D11B962422AF0B1800DACD3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D11B962B22AF0B1A00DACD3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D10A56BF22B977A4000721CC /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +81,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D10A56BC22B9772B000721CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D10A56BD22B9772C000721CC /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D11B961822AF0B1800DACD3E = {
 			isa = PBXGroup;
 			children = (
 				D11B962322AF0B1800DACD3E /* Westeros */,
 				D11B963822AF0B1A00DACD3E /* WesterosTests */,
 				D11B962222AF0B1800DACD3E /* Products */,
+				D10A56BC22B9772B000721CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +149,10 @@
 			children = (
 				D1BEBDEC22B2DD0800061BFB /* HouseDetailViewController.swift */,
 				D1BEBDED22B2DD0800061BFB /* HouseDetailViewController.xib */,
+				D10A56C022B97A37000721CC /* WikiViewController.swift */,
+				D10A56C122B97A37000721CC /* WikiViewController.xib */,
+				D10A56C422B98970000721CC /* HouseListTableViewController.swift */,
+				D10A56C522B98970000721CC /* HouseListTableViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -233,6 +257,8 @@
 			files = (
 				D11B962F22AF0B1A00DACD3E /* LaunchScreen.storyboard in Resources */,
 				D11B962C22AF0B1A00DACD3E /* Assets.xcassets in Resources */,
+				D10A56C322B97A37000721CC /* WikiViewController.xib in Resources */,
+				D10A56C722B98970000721CC /* HouseListTableViewController.xib in Resources */,
 				D1BEBDEF22B2DD0800061BFB /* HouseDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,7 +282,9 @@
 				D1BEBDF322B2F92000061BFB /* UiViewControllerExtensions.swift in Sources */,
 				D131121422B0301000655350 /* Sigil.swift in Sources */,
 				D131121222B02CA700655350 /* House.swift in Sources */,
+				D10A56C622B98970000721CC /* HouseListTableViewController.swift in Sources */,
 				D11B962522AF0B1800DACD3E /* AppDelegate.swift in Sources */,
+				D10A56C222B97A37000721CC /* WikiViewController.swift in Sources */,
 				D131121822B0324800655350 /* Person.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

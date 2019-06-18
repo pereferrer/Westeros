@@ -28,10 +28,36 @@ class RepositoryTests: XCTestCase {
     
     func testLocalFactoryHasTheCorrectHouseCount(){
         let houses = Repository.local.houses
-        XCTAssertEqual(houses.count, 2)
+        XCTAssertEqual(houses.count, 3)
     }
     
     func testLocalRepositoryReturnsSortedArrayOfHouses(){
-        XCTAssertEqual(houses, houses.sort())
+        let houses = Repository.local.houses
+        XCTAssertEqual(houses, houses.sorted())
+    }
+    
+    func testLocalRepositoryReturnHouseByNameCaseInsensitively(){
+        let stark = Repository.local.house(named: "stark")
+        XCTAssertNotNil(stark)
+        
+        let lannister = Repository.local.house(named: "lannisTEr")
+        XCTAssertNotNil(lannister)
+        
+        let keepCoding = Repository.local.house(named: "KeepCoding")
+        XCTAssertNil(keepCoding)
+    }
+    
+    func testLocalRepositoryHouseFiltering(){
+        let filteredHouseList = Repository.local.houses(filteredBy: { house in
+            house.count == 1
+        })
+        XCTAssertEqual(filteredHouseList.count, 1)
+        
+        /*let list = Repository.local.houses(filteredBy: { house in
+            house.words == "Se acerca el invierno"
+        })
+        XCTAssertEqual(list.count, 1)*/
+        
+        
     }
 }

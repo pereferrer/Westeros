@@ -35,6 +35,10 @@ extension House {
         return _members.count
     }
     
+    var sortedMembers:[Person]{
+        return _members.sorted()
+    }
+    
     func addPerson(person:Person){
         if self == person.house {
             _members.insert(person)

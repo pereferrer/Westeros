@@ -91,4 +91,10 @@ class HouseTests: XCTestCase {
         starkHouse.add(persons: robb, arya, tyrion)
         XCTAssertEqual(starkHouse.count, 2)
     }
+    
+    func testHouseSortedMembersReturnsASortedListOfMembers(){
+        
+        starkHouse.add(persons: robb,arya)
+        XCTAssertEqual(starkHouse.sortedMembers, [arya,robb])
+    }
 }

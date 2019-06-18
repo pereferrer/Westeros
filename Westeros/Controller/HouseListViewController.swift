@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HouseListTableViewController: UITableViewController {
+class HouseListViewController: UITableViewController {
     
     private let model: [House]
     
@@ -42,16 +42,29 @@ class HouseListTableViewController: UITableViewController {
         let house = model[indexPath.row]
         
         //Crear una celda
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
-        if cell == nil{
-            cell = UITableViewCell(style: .default, reuseIdentifier: cellId)
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .default, reuseIdentifier: cellId)
         
         //Sincronizar model(casa) y la vista(celda)
-        cell?.textLabel?.text = house.name
-        cell?.imageView?.image = house.sigil.image
+        cell.textLabel?.text = house.name
+        cell.imageView?.image = house.sigil.image
         
         //Devolver la celda
-        return cell!
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //Averiguar que casa se ha pulsado
+        let house = model[indexPath.row]
+        
+        //Crear el VC de la casa
+        let houseDetailViewController = HouseDetailViewController(model: house)
+        
+        //Mostrar
+        navigationController?.pushViewController(houseDetailViewController, animated: true)
     }
 }

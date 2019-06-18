@@ -52,13 +52,18 @@ extension HouseDetailViewController {
 extension HouseDetailViewController {
     private func setupUI(){
         //Creo mi boton
+        let membersButton = UIBarButtonItem(title: "Members",
+                                            style: .done,
+                                            target: self,
+                                            action: #selector(displayMembers))
+        
         let wikiButton = UIBarButtonItem(title: "Wiki",
                                          style: .done,
                                          target: self, //El target es donde esta definido el metodo del action
                                          action: #selector(displayWiki))
         
         //Lo añado a la navigation bar
-        navigationItem.rightBarButtonItem = wikiButton
+        navigationItem.rightBarButtonItems = [membersButton, wikiButton]
     }
     
     @objc private func displayWiki(){
@@ -67,5 +72,9 @@ extension HouseDetailViewController {
         
         //Mostrarlo mediante un push navigation Controller
         navigationController?.pushViewController(wikiViewController, animated: true)        
+    }
+    
+    @objc private func displayMembers(){
+        //Todo: Hacer para el jueves
     }
 }

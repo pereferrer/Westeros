@@ -34,6 +34,10 @@ extension Person {
     var proxyForEquality: String{
         return "\(name) \(alias) \(house.name)"
     }
+    
+    var proxyForComparison: String{
+        return fullName
+    }
 }
 
 extension Person: Equatable {
@@ -51,4 +55,9 @@ extension Person: Hashable {
     }
 }
 
+extension Person : Comparable{
+    static func < (lhs: Person, rhs: Person) -> Bool {
+        return lhs.proxyForComparison < rhs.proxyForComparison
+    }
+}
 

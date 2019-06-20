@@ -33,8 +33,43 @@ class MemberListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 }
 
 //Todo: Implementar los protocolos delegate y datasource
+
+extension MemberListViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return model.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellId = "HouseCell"
+        
+        //Descubrir cual es la casa que tenemos que mostrar
+        let member = model[indexPath.row]
+        
+        //Crear una celda
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .default, reuseIdentifier: cellId)
+        
+        //Sincronizar model(casa) y la vista(celda)
+        cell.textLabel?.text = member.fullName
+        
+        //Devolver la celda
+        return cell
+    }
+    
+    
+}

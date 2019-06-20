@@ -76,5 +76,7 @@ extension HouseDetailViewController {
     
     @objc private func displayMembers(){
         //Todo: Hacer para el jueves
+        let memberListViewController = MemberListViewController(model: model.sortedMembers)
+        navigationController?.pushViewController(memberListViewController, animated: true)
     }
 }

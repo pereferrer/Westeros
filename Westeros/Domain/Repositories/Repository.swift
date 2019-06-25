@@ -27,7 +27,6 @@ protocol HouseFactory {
 final class LocalFactory: HouseFactory {
     
     var houses: [House] {
-        
         //Creamos las casas
        
         let starkSigil = Sigil(description: "Lobo Huargo", image: UIImage(named: "codeIsComing")!)
@@ -54,6 +53,96 @@ final class LocalFactory: HouseFactory {
         targaryenHouse.add(persons: dani)
         
         return [starkHouse, lannisterHouse, targaryenHouse].sorted()
+    }
+    
+    var seasons: [Season]{
+        
+        //Creo las fechas de los episodios
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-mm-yyyy" //Your date format
+        guard let dateEpisodeOneSeasonOne = dateFormatter.date(from: "17-04-2011") else {
+            fatalError()
+        }
+        guard let dateEpisodeTwoSeasonOne = dateFormatter.date(from: "24-04-2011") else {
+            fatalError()
+        }
+        guard let dateEpisodeOneSeasonTwo = dateFormatter.date(from: "01-04-2012") else {
+            fatalError()
+        }
+        guard let dateEpisodeTwoSeasonTwo = dateFormatter.date(from: "08-04-2012") else {
+            fatalError()
+        }
+        
+        guard let dateEpisodeOneSeasonThree = dateFormatter.date(from: "31-03-2013") else {
+            fatalError()
+        }
+        guard let dateEpisodeTwoSeasonThree = dateFormatter.date(from: "07-04-2013") else {
+            fatalError()
+        }
+        
+        guard let dateEpisodeOneSeasonFour = dateFormatter.date(from: "06-04-2014") else {
+            fatalError()
+        }
+        guard let dateEpisodeTwoSeasonFour = dateFormatter.date(from: "13-04-2014") else {
+            fatalError()
+        }
+        
+        guard let dateEpisodeOneSeasonFive = dateFormatter.date(from: "12-04-2015") else {
+            fatalError()
+        }
+        guard let dateEpisodeTwoSeasonFive = dateFormatter.date(from: "19-04-2015") else {
+            fatalError()
+        }
+        
+        guard let dateEpisodeOneSeasonSix = dateFormatter.date(from: "24-04-2016") else {
+            fatalError()
+        }
+        guard let dateEpisodeTwoSeasonSix = dateFormatter.date(from: "01-05-2016") else {
+            fatalError()
+        }
+        
+        guard let dateEpisodeOneSeasonSeven = dateFormatter.date(from: "16-07-2017") else {
+            fatalError()
+        }
+        guard let dateEpisodeTwoSeasonSeven = dateFormatter.date(from: "23-07-2017") else {
+            fatalError()
+        }
+        
+        //Creo las temporadas
+        let seasonOne = Season(nombre: "Season One", fechaLanzamiento: dateEpisodeOneSeasonOne)
+        let seasonTwo = Season(nombre: "Season Two", fechaLanzamiento: dateEpisodeOneSeasonTwo)
+        let seasonThree = Season(nombre: "Season Three", fechaLanzamiento: dateEpisodeOneSeasonThree)
+        let seasonFour = Season(nombre: "Season Four", fechaLanzamiento: dateEpisodeOneSeasonFour)
+        let seasonFive = Season(nombre: "Season Five", fechaLanzamiento: dateEpisodeOneSeasonFive)
+        let seasonSix = Season(nombre: "Season Six", fechaLanzamiento: dateEpisodeOneSeasonSix)
+        let seasonSeven = Season(nombre: "Season Seven", fechaLanzamiento: dateEpisodeTwoSeasonSeven)
+        
+        //Creo los episodios por temporadas
+        let episodeOneSeasonOne = Episode(titulo: "Winter Is Coming", fechaEmision: dateEpisodeOneSeasonOne, season: seasonOne)
+        let episodeTwoSeasonOne = Episode(titulo: "The Kingsroad", fechaEmision: dateEpisodeTwoSeasonOne, season: seasonOne)
+        let episodeOneSeasonTwo = Episode(titulo: "The North Remembers", fechaEmision: dateEpisodeOneSeasonTwo, season: seasonTwo)
+        let episodeTwoSeasonTwo = Episode(titulo: "The Night Lands", fechaEmision: dateEpisodeTwoSeasonTwo, season: seasonTwo)
+        let episodeOneSeasonThree = Episode(titulo: "Valar Dohaeris", fechaEmision: dateEpisodeOneSeasonThree, season: seasonThree)
+        let episodeTwoSeasonThree = Episode(titulo: "Dark Wings, Dark Words", fechaEmision: dateEpisodeTwoSeasonThree, season: seasonThree)
+        let episodeOneSeasonFour = Episode(titulo: "Two Swords", fechaEmision: dateEpisodeOneSeasonFour, season: seasonFour)
+        let episodeTwoSeasonFour = Episode(titulo: "The Lion and the Rose", fechaEmision: dateEpisodeTwoSeasonFour, season: seasonFour)
+        let episodeOneSeasonFive = Episode(titulo: "The Wars to Come", fechaEmision: dateEpisodeOneSeasonFive, season: seasonFive)
+        let episodeTwoSeasonFive = Episode(titulo:     "The House of Black and White", fechaEmision: dateEpisodeTwoSeasonFive, season: seasonFive)
+        let episodeOneSeasonSix = Episode(titulo: "The Red Woman", fechaEmision: dateEpisodeOneSeasonSix, season: seasonSix)
+        let episodeTwoSeasonSix = Episode(titulo: "Home", fechaEmision: dateEpisodeTwoSeasonSix, season: seasonSix)
+        let episodeOneSeasonSeven = Episode(titulo: "Dragonstone", fechaEmision: dateEpisodeOneSeasonSeven, season: seasonSeven)
+        let episodeTwoSeasonSeven = Episode(titulo: "Stormborn", fechaEmision: dateEpisodeTwoSeasonSeven, season: seasonSeven)
+        
+        //añado los episodios a sus respectivas temporadas
+        seasonOne.add(episodes: episodeOneSeasonOne, episodeTwoSeasonOne)
+        seasonTwo.add(episodes: episodeOneSeasonTwo, episodeTwoSeasonTwo)
+        seasonThree.add(episodes: episodeOneSeasonThree, episodeTwoSeasonThree)
+        seasonFour.add(episodes: episodeOneSeasonFour, episodeTwoSeasonFour)
+        seasonFive.add(episodes: episodeOneSeasonFive, episodeTwoSeasonFive)
+        seasonSix.add(episodes: episodeOneSeasonSix, episodeTwoSeasonSix)
+        seasonSeven.add(episodes: episodeOneSeasonSeven, episodeTwoSeasonSeven)
+        
+        return [seasonOne, seasonTwo].sorted()
     }
     
     func house(named: String) -> House? {

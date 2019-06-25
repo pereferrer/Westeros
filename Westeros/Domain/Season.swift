@@ -50,6 +50,10 @@ extension Season {
     var proxyForComparison: Date{
         return fechaLanzamiento
     }
+    
+    var sortedEpisodes:[Episode]{
+        return _episodios.sorted()
+    }
 }
 
 extension Season: CustomStringConvertible{

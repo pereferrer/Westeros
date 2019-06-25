@@ -1,5 +1,5 @@
 //
-//  SeasonDetailViewController.swift
+//  EpisodeListViewController.swift
 //  Westeros
 //
 //  Created by Pere Josep Ferrer Ventura on 25/06/2019.
@@ -8,16 +8,27 @@
 
 import UIKit
 
-class SeasonDetailViewController: UIViewController {
+protocol EpisodeListViewControllerDelegate: class{
+    
+    func episodeListViewController(_ viewController: EpisodeListViewController, didSelectSeason episode: Episode)
+}
+
+class EpisodeListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    private var model: Season
     
-    init(model: Season){
+    enum Constants{
+        static let seasonKey = "EpisodeKey"
+    }
+    
+    private let model: [Episode]
+    weak var delegate: EpisodeListViewControllerDelegate?
+    
+    init(model: [Episode]){
         self.model = model
         super.init(nibName: nil, bundle: nil)
-        title = model.nombre
+        title = "Episodes"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,18 +37,20 @@ class SeasonDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
 }
 
-extension SeasonDetailViewController: UITableViewDelegate{
+extension EpisodeListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
 }
 
-extension SeasonDetailViewController: UITableViewDataSource{
+extension EpisodeListViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -45,33 +58,37 @@ extension SeasonDetailViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return model.sortedEpisodes.count
+        return model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellId = "SeasonDetailCell"
+        let cellId = "EpisodeCell"
         
         //Descubrir cual es la casa que tenemos que mostrar
-        let episode = model.sortedEpisodes[indexPath.row]
+        let episode = model[indexPath.row]
         
         //Crear una celda
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .default, reuseIdentifier: cellId)
         
         //Sincronizar model(casa) y la vista(celda)
         cell.textLabel?.text = episode.titulo
-        cell.detailTextLabel?.text = "Fecha de lanzamiento: \(episode.fechaEmision)"
+        cell.detailTextLabel?.text = "Fecha de emisión: \(episode.fechaEmision)"
         
         //Devolver la celda
         return cell
     }
-}
-
-//Mark: - Season List View Controller Delegate
-extension SeasonDetailViewController: SeasonListViewControllerDelegate{
-    func seasonListViewController(_ viewController: SeasonListViewController, didSelectSeason season: Season) {
-        model = season
-        tableView.reloadData()
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //Averiguar que Season se ha pulsado
+        let season = model[indexPath.row]
+        
+        //Crear el wiki vc
+        let episodeDetailViewController = EpisodeDetailViewController(model: season)
+        
+        //Mostrarlo mediante un push navigation Controller
+        navigationController?.pushViewController(episodeDetailViewController, animated: true)
     }
 }
 

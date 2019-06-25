@@ -13,11 +13,13 @@ final class Episode{
     
     let titulo: String
     let fechaEmision: Date
+    let resumen: String
     weak var season: Season?
     
-    init(titulo: String, fechaEmision: Date, season:Season){
+    init(titulo: String, fechaEmision: Date, resumen:String, season:Season){
         self.titulo = titulo
         self.fechaEmision = fechaEmision
+        self.resumen = resumen
         self.season = season
     }
 }

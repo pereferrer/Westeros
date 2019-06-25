@@ -39,10 +39,10 @@ class EpisodeTests: XCTestCase {
         seasonOne = Season(nombre: "Season One", fechaLanzamiento: dateEpisodeOneSeasonOne)
         seasonTwo = Season(nombre: "Season Two", fechaLanzamiento: dateEpisodeOneSeasonTwo)
         
-        episodeOneSeasonOne = Episode(titulo: "Winter Is Coming", fechaEmision: dateEpisodeOneSeasonOne, season: seasonOne)
-        episodeTwoSeasonOne = Episode(titulo: "The Kingsroad", fechaEmision: dateEpisodeTwoSeasonOne, season: seasonOne)
-        episodeOneSeasonTwo = Episode(titulo: "The North Remembers", fechaEmision: dateEpisodeOneSeasonTwo, season: seasonTwo)
-        episodeTwoSeasonTwo = Episode(titulo: "The Night Lands", fechaEmision: dateEpisodeTwoSeasonTwo, season: seasonTwo)
+        episodeOneSeasonOne = Episode(titulo: "Winter Is Coming", fechaEmision: dateEpisodeOneSeasonOne, resumen: "Eddard Stark is torn between his family and an old friend when asked to serve at the side of King Robert Baratheon; Viserys plans to wed his sister to a nomadic warlord in exchange for an army.", season: seasonOne)
+        episodeTwoSeasonOne = Episode(titulo: "The Kingsroad", fechaEmision: dateEpisodeTwoSeasonOne, resumen: "While Bran recovers from his fall, Ned takes only his daughters to King's Landing. Jon Snow goes with his uncle Benjen to the Wall. Tyrion joins them.", season: seasonOne)
+        episodeOneSeasonTwo = Episode(titulo: "The North Remembers", fechaEmision: dateEpisodeOneSeasonTwo, resumen: "Tyrion arrives at King's Landing to take his father's place as Hand of the King. Stannis Baratheon plans to take the Iron Throne for his own. Robb tries to decide his next move in the war. The Night's Watch arrive at the house of Craster.", season: seasonTwo)
+        episodeTwoSeasonTwo = Episode(titulo: "The Night Lands", fechaEmision: dateEpisodeTwoSeasonTwo, resumen: "Arya makes friends with Gendry. Tyrion tries to take control of the Small Council. Theon arrives at his home, Pyke, in order to persuade his father into helping Robb with the war. Jon tries to investigate Craster's secret.", season: seasonTwo)
         
         seasonOne.add(episodes: episodeOneSeasonOne, episodeTwoSeasonOne)
         seasonTwo.add(episodes: episodeOneSeasonTwo, episodeTwoSeasonTwo)
@@ -82,7 +82,7 @@ class EpisodeTests: XCTestCase {
         guard let dateEpisodeOneSeasonOne = dateFormatter.date(from: "17-04-2011") else {
             fatalError()
         }
-        let episode = Episode(titulo: "Winter Is Coming", fechaEmision: dateEpisodeOneSeasonOne, season: seasonOne)
+        let episode = Episode(titulo: "Winter Is Coming", fechaEmision: dateEpisodeOneSeasonOne, resumen: "Eddard Stark is torn between his family and an old friend when asked to serve at the side of King Robert Baratheon; Viserys plans to wed his sister to a nomadic warlord in exchange for an army.", season: seasonOne)
         XCTAssertEqual(episodeOneSeasonOne, episode)
         
         //Desigualdad

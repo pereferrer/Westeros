@@ -43,7 +43,6 @@ extension House {
         if self == person.house {
             _members.insert(person)
         }
-        
     }
     //Funciones variadicas
     func add(persons: Person...){

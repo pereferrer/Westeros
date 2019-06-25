@@ -18,7 +18,7 @@ final class HouseDetailViewController: UIViewController {
     
     
     //Mark: Properties
-    private let model: House
+    private var model: House
     
     
     //Mark: Initialization
@@ -75,8 +75,16 @@ extension HouseDetailViewController {
     }
     
     @objc private func displayMembers(){
-        //Todo: Hacer para el jueves
+        
         let memberListViewController = MemberListViewController(model: model.sortedMembers)
         navigationController?.pushViewController(memberListViewController, animated: true)
+    }
+}
+
+//Mark: - House List View Controller Delegate
+extension HouseDetailViewController: HouseListViewControllerDelegate{
+    func houseListViewController(_ viewController: HouseListViewController, didSelectHouse house: House) {
+        model = house
+        syncModelWithView()
     }
 }

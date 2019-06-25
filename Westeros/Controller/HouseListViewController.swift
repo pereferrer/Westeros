@@ -8,9 +8,24 @@
 
 import UIKit
 
+
+protocol HouseListViewControllerDelegate: class{
+    
+    //should
+    //will
+    //did
+    func houseListViewController(_ viewController: HouseListViewController, didSelectHouse house: House)
+}
+
 class HouseListViewController: UITableViewController {
     
+    enum Constants{
+        static let houseKey = "HouseKey"
+        static let LastHouseKey = "LastHouseKey"
+    }
+    
     private let model: [House]
+    weak var delegate: HouseListViewControllerDelegate?
     
     init(model: [House]){
         self.model = model
@@ -58,10 +73,36 @@ class HouseListViewController: UITableViewController {
         //Averiguar que casa se ha pulsado
         let house = model[indexPath.row]
         
-        //Crear el VC de la casa
-        let houseDetailViewController = HouseDetailViewController(model: house)
+        //Avisar al delegado
+        //Enviamos la infomarcion de que se ha selecciona una casa
+        delegate?.houseListViewController(self, didSelectHouse: house)
         
-        //Mostrar
-        navigationController?.pushViewController(houseDetailViewController, animated: true)
+        
+        //Mandamos la misma información a través de las notificaciones
+        let dictionary = [Constants.houseKey: house]
+        let notificationCenter = NotificationCenter.default
+        let notification = Notification(name: .houseDidNotificationName,
+                                        object: self,
+                                        userInfo: dictionary)
+        notificationCenter.post(notification)
+        
+        //Guardar la última casa seleccionada
+        saveLastSelectedHouse(at: indexPath.row)
+    }
+}
+
+extension HouseListViewController {
+    private func saveLastSelectedHouse(at index: Int){
+        //Escribimos en UserDefaults
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(index, forKey: Constants.LastHouseKey)
+        userDefaults.synchronize()
+    }
+    
+    func lastSelectedHouse()->House{
+        //Leer de UserDefaults
+        let userDefaults = UserDefaults.standard
+        let lastIndex = userDefaults.integer(forKey: Constants.LastHouseKey)
+        return model[lastIndex]
     }
 }

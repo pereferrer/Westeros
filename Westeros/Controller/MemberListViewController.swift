@@ -38,34 +38,32 @@ class MemberListViewController: UIViewController {
     }
 }
 
-//Todo: Implementar los protocolos delegate y datasource
-
-extension MemberListViewController: UITableViewDelegate, UITableViewDataSource{
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.count
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
+extension MemberListViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+}
+
+//Mark: Table view data source
+extension MemberListViewController: UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellId = "HouseCell"
         
         //Descubrir cual es la casa que tenemos que mostrar
-        let member = model[indexPath.row]
+        let person = model[indexPath.row]
         
         //Crear una celda
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .default, reuseIdentifier: cellId)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
         
         //Sincronizar model(casa) y la vista(celda)
-        cell.textLabel?.text = member.fullName
+        cell.textLabel?.text = person.fullName
+        cell.detailTextLabel?.text = person.alias
         
         //Devolver la celda
         return cell

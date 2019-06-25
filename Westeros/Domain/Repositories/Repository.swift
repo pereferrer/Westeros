@@ -55,6 +55,7 @@ final class LocalFactory: HouseFactory {
         return [starkHouse, lannisterHouse, targaryenHouse].sorted()
     }
     
+    //se añade test en RepositoryTests
     var seasons: [Season]{
         
         //Creo las fechas de los episodios
@@ -151,5 +152,10 @@ final class LocalFactory: HouseFactory {
     
     func houses(filteredBy theFilter: (House) -> Bool) -> [House] {
         return houses.filter(theFilter)
+    }
+    
+    //se añade test en RepositoryTests
+    func seasons(filteredBy filter: (Season) ->Bool) -> [Season]{
+        return seasons.filter(filter)
     }
 }

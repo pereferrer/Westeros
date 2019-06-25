@@ -57,7 +57,20 @@ class RepositoryTests: XCTestCase {
             house.words == "Se acerca el invierno"
         })
         XCTAssertEqual(list.count, 1)*/
+    }
+    
+    //añado test para comprobar que los episodios se devuelven ordenados.
+    func testLocalRepositoryReturnsSortedArrayOSeasons(){
+        let seasons = Repository.local.seasons
+        XCTAssertEqual(seasons, seasons.sorted())
+    }
+    
+    //añado test para comprobar que la función de filtrado devuelve un valor correcto
+    func testLocalRepositorySeasonFiltering(){
         
-        
+        let filteredSeasonList = Repository.local.seasons(filteredBy: { season in
+            season.nombre == "Season One"
+        })
+        XCTAssertEqual(filteredSeasonList.count, 1)
     }
 }

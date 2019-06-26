@@ -69,7 +69,7 @@ extension EpisodeListViewController: UITableViewDataSource {
         let episode = model[indexPath.row]
         
         //Crear una celda
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .default, reuseIdentifier: cellId)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
         
         //Sincronizar model(casa) y la vista(celda)
         cell.textLabel?.text = episode.titulo

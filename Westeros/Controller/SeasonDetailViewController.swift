@@ -29,6 +29,11 @@ class SeasonDetailViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUI()
+    }
 }
 
 extension SeasonDetailViewController: UITableViewDelegate{
@@ -56,7 +61,7 @@ extension SeasonDetailViewController: UITableViewDataSource{
         let episode = model.sortedEpisodes[indexPath.row]
         
         //Crear una celda
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .default, reuseIdentifier: cellId)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
         
         //Sincronizar model(casa) y la vista(celda)
         cell.textLabel?.text = episode.titulo
@@ -75,3 +80,24 @@ extension SeasonDetailViewController: SeasonListViewControllerDelegate{
     }
 }
 
+extension SeasonDetailViewController {
+    private func setupUI(){
+        //Creo mi boton
+        let episodesButton = UIBarButtonItem(title: "Episodes",
+                                            style: .done,
+                                            target: self,
+                                            action: #selector(displayEpisodes))
+        
+
+        //Lo añado a la navigation bar
+        navigationItem.rightBarButtonItems = [episodesButton]
+    }
+    
+    @objc private func displayEpisodes(){
+        //Crear el wiki vc
+        let episodeListViewController = EpisodeListViewController(model: model.sortedEpisodes)
+        
+        //Mostrarlo mediante un push navigation Controller
+        navigationController?.pushViewController(episodeListViewController, animated: true)
+    }
+}

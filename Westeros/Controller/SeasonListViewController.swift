@@ -82,11 +82,9 @@ extension SeasonListViewController: UITableViewDataSource {
         //Averiguar que Season se ha pulsado
         let season = model[indexPath.row]
         
-        //Crear el wiki vc
-        let seasonDetailViewController = SeasonDetailViewController(model: season)
-        
-        //Mostrarlo mediante un push navigation Controller
-        navigationController?.pushViewController(seasonDetailViewController, animated: true)
+        //Avisar al delegado
+        //Enviamos la infomarcion de que se ha selecciona una casa
+        delegate?.seasonListViewController(self, didSelectSeason: season)
     }
 }
 

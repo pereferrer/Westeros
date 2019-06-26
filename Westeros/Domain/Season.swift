@@ -64,7 +64,7 @@ extension Season: CustomStringConvertible{
 
 extension Season: Equatable{
     static func == (lhs: Season, rhs: Season) -> Bool {
-        return lhs.proxyForEquality < rhs.proxyForEquality
+        return lhs.proxyForEquality == rhs.proxyForEquality
     }
 }
 

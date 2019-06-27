@@ -47,16 +47,16 @@ final class LocalFactory: HouseFactory {
         let lannisterHouse = House(name: "Lannister", sigil: lannisterSigil, words: "Oye mi rugido", url: lannisterURL)
         let targaryenHouse = House(name: "Targaryen", sigil: targaryenSigil, words: "Fuego y sangre", url: targaryenURL)
         
-        let robb = Person(name: "Robb", alias: "El joven lobo", house: starkHouse)
-        let arya = Person(name: "Arya", house: starkHouse)
-        let tyrion = Person(name: "Tyrion", alias: "El enano", house: lannisterHouse)
-        let jaime = Person(name: "Jaime", alias: "El matarreyes", house: lannisterHouse)
-        let cersei = Person(name: "Cersei", house: lannisterHouse)
-        let dani = Person(name: "Daenerys", alias: "Madre de dragones", house: targaryenHouse)
+        _ = Person(name: "Robb", alias: "El joven lobo", house: starkHouse)
+        _ = Person(name: "Arya", house: starkHouse)
+        _ = Person(name: "Tyrion", alias: "El enano", house: lannisterHouse)
+        _ = Person(name: "Jaime", alias: "El matarreyes", house: lannisterHouse)
+        _ = Person(name: "Cersei", house: lannisterHouse)
+        _ = Person(name: "Daenerys", alias: "Madre de dragones", house: targaryenHouse)
         
-        starkHouse.add(persons: robb, arya)
-        lannisterHouse.add(persons: tyrion, jaime, cersei)
-        targaryenHouse.add(persons: dani)
+//        starkHouse.add(persons: robb, arya)
+//        lannisterHouse.add(persons: tyrion, jaime, cersei)
+//        targaryenHouse.add(persons: dani)
         
         return [starkHouse, lannisterHouse, targaryenHouse].sorted()
     }

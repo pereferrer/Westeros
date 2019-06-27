@@ -17,12 +17,7 @@ class EpisodeListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    
-    enum Constants{
-        static let seasonKey = "EpisodeKey"
-    }
-    
-    private let model: [Episode]
+    private var model: [Episode]
     weak var delegate: EpisodeListViewControllerDelegate?
     
     init(model: [Episode]){
@@ -40,6 +35,14 @@ class EpisodeListViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        //Siempre que nos subscribirnos, debemos desubscribirnos
+        subscribeToNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeNotifications()
     }
 }
 
@@ -92,3 +95,33 @@ extension EpisodeListViewController: UITableViewDataSource {
     }
 }
 
+extension EpisodeListViewController{
+    private func subscribeToNotifications(){
+        let notificationCenter = NotificationCenter.default
+        //Nos damos de alta de las notifications
+        notificationCenter.addObserver(self, selector: #selector(seasonDidChange), name: Notification.Name.seasonDidNotificationName, object: nil)//Objeto que envia la notification
+    }
+    
+    private func unsubscribeNotifications(){
+        //nos damos de baja de las notificaciones
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.removeObserver(self)
+    }
+    
+    @objc private func seasonDidChange(notification: Notification){
+        //averiguar lacasa
+        guard let dictionary = notification.userInfo else{
+            return
+        }
+        
+        guard let episodes = dictionary[SeasonListViewController.Constants.seasonKey] as? [Episode] else{
+            return
+        }
+        
+        //Actualizar modelo
+        self.model = episodes
+        
+        //Sincronizar modelo y vista
+        tableView.reloadData()
+    }
+}

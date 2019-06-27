@@ -42,7 +42,7 @@ extension Episode: CustomStringConvertible{
 
 extension Episode: Equatable{
     static func == (lhs: Episode, rhs: Episode) -> Bool {
-        return lhs.proxyForEquality < rhs.proxyForEquality
+        return lhs.proxyForEquality == rhs.proxyForEquality
     }
 }
 

@@ -34,6 +34,8 @@
 		D16BB3D822C2791B00C3CBEE /* SeasonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D16BB3D622C2791B00C3CBEE /* SeasonListViewController.xib */; };
 		D16BB3DB22C27C7C00C3CBEE /* SeasonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16BB3D922C27C7C00C3CBEE /* SeasonDetailViewController.swift */; };
 		D16BB3DC22C27C7C00C3CBEE /* SeasonDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D16BB3DA22C27C7C00C3CBEE /* SeasonDetailViewController.xib */; };
+		D1B2042F22C4C69000C706E9 /* MemberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2042D22C4C69000C706E9 /* MemberDetailViewController.swift */; };
+		D1B2043022C4C69000C706E9 /* MemberDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1B2042E22C4C69000C706E9 /* MemberDetailViewController.xib */; };
 		D1BEBDEE22B2DD0800061BFB /* HouseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BEBDEC22B2DD0800061BFB /* HouseDetailViewController.swift */; };
 		D1BEBDEF22B2DD0800061BFB /* HouseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1BEBDED22B2DD0800061BFB /* HouseDetailViewController.xib */; };
 		D1BEBDF322B2F92000061BFB /* UiViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BEBDF222B2F92000061BFB /* UiViewControllerExtensions.swift */; };
@@ -84,6 +86,8 @@
 		D16BB3D622C2791B00C3CBEE /* SeasonListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeasonListViewController.xib; sourceTree = "<group>"; };
 		D16BB3D922C27C7C00C3CBEE /* SeasonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonDetailViewController.swift; sourceTree = "<group>"; };
 		D16BB3DA22C27C7C00C3CBEE /* SeasonDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeasonDetailViewController.xib; sourceTree = "<group>"; };
+		D1B2042D22C4C69000C706E9 /* MemberDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailViewController.swift; sourceTree = "<group>"; };
+		D1B2042E22C4C69000C706E9 /* MemberDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberDetailViewController.xib; sourceTree = "<group>"; };
 		D1BEBDEC22B2DD0800061BFB /* HouseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseDetailViewController.swift; sourceTree = "<group>"; };
 		D1BEBDED22B2DD0800061BFB /* HouseDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseDetailViewController.xib; sourceTree = "<group>"; };
 		D1BEBDF222B2F92000061BFB /* UiViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 				D1155E3F22C284BA0073DF23 /* EpisodeListViewController.xib */,
 				D1155E4222C285DD0073DF23 /* EpisodeDetailViewController.swift */,
 				D1155E4322C285DD0073DF23 /* EpisodeDetailViewController.xib */,
+				D1B2042D22C4C69000C706E9 /* MemberDetailViewController.swift */,
+				D1B2042E22C4C69000C706E9 /* MemberDetailViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -306,6 +312,7 @@
 				D16BB3DC22C27C7C00C3CBEE /* SeasonDetailViewController.xib in Resources */,
 				D10A56C322B97A37000721CC /* WikiViewController.xib in Resources */,
 				D16BB3D822C2791B00C3CBEE /* SeasonListViewController.xib in Resources */,
+				D1B2043022C4C69000C706E9 /* MemberDetailViewController.xib in Resources */,
 				D10A56C722B98970000721CC /* HouseListViewController.xib in Resources */,
 				D10A56CB22B999BA000721CC /* MemberListViewController.xib in Resources */,
 				D1BEBDEF22B2DD0800061BFB /* HouseDetailViewController.xib in Resources */,
@@ -337,6 +344,7 @@
 				D131121422B0301000655350 /* Sigil.swift in Sources */,
 				D10A56CA22B999BA000721CC /* MemberListViewController.swift in Sources */,
 				D16BB3DB22C27C7C00C3CBEE /* SeasonDetailViewController.swift in Sources */,
+				D1B2042F22C4C69000C706E9 /* MemberDetailViewController.swift in Sources */,
 				D16BB3CC22C20AFE00C3CBEE /* Episode.swift in Sources */,
 				D131121222B02CA700655350 /* House.swift in Sources */,
 				D10A56C622B98970000721CC /* HouseListViewController.swift in Sources */,

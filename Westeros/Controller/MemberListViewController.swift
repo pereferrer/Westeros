@@ -16,7 +16,7 @@ class MemberListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //Mark: Properties
-    let model: [Person]
+    var model: [Person]
     
     //Mark-: Initialization
     init(model: [Person]){
@@ -35,6 +35,14 @@ class MemberListViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //Siempre que nos subscribirnos, debemos desubscribirnos
+        subscribeToNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeNotifications()
     }
 }
 
@@ -69,5 +77,45 @@ extension MemberListViewController: UITableViewDataSource{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Averiguar que Miembro se ha pulsado
+        let member = model[indexPath.row]
+        
+        //Crear el wiki vc
+        let memberDetailVieController = MemberDetailViewController(model: member)
+        
+        //Mostrarlo mediante un push navigation Controller
+        navigationController?.pushViewController(memberDetailVieController, animated: true)
+    }
+}
+
+extension MemberListViewController{
+    private func subscribeToNotifications(){
+        let notificationCenter = NotificationCenter.default
+        //Nos damos de alta de las notifications
+        notificationCenter.addObserver(self, selector: #selector(houseDidChange), name: Notification.Name.houseDidNotificationName, object: nil)//Objeto que envia la notification
+    }
     
+    private func unsubscribeNotifications(){
+        //nos damos de baja de las notificaciones
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.removeObserver(self)
+    }
+    
+    @objc private func houseDidChange(notification: Notification){
+        //averiguar lacasa
+        guard let dictionary = notification.userInfo else{
+            return
+        }
+        
+        guard let member = dictionary[HouseListViewController.Constants.houseKey] as? [Person] else{
+            return
+        }
+        
+        //Actualizar modelo
+        self.model = member
+        
+        //Sincronizar modelo y vista
+        tableView.reloadData()
+    }
 }

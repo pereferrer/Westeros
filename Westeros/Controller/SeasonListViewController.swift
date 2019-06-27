@@ -85,6 +85,14 @@ extension SeasonListViewController: UITableViewDataSource {
         //Avisar al delegado
         //Enviamos la infomarcion de que se ha selecciona una casa
         delegate?.seasonListViewController(self, didSelectSeason: season)
+        
+        //Mandamos la misma información a través de las notificaciones
+        let dictionary = [Constants.seasonKey: season.sortedEpisodes]
+        let notificationCenter = NotificationCenter.default
+        let notification = Notification(name: .seasonDidNotificationName,
+                                        object: self,
+                                        userInfo: dictionary)
+        notificationCenter.post(notification)
     }
 }
 

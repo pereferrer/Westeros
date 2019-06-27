@@ -86,6 +86,14 @@ class HouseListViewController: UITableViewController {
                                         userInfo: dictionary)
         notificationCenter.post(notification)
         
+        //Mandamos la misma información a través de las notificaciones
+        let members = [Constants.houseKey: house.sortedMembers]
+        let nc = NotificationCenter.default
+        let n = Notification(name: .houseDidNotificationName,
+                                        object: self,
+                                        userInfo: members)
+        nc.post(n)
+        
         //Guardar la última casa seleccionada
         saveLastSelectedHouse(at: indexPath.row)
     }

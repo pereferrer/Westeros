@@ -26,6 +26,12 @@ protocol HouseFactory {
 
 final class LocalFactory: HouseFactory {
     
+    enum Houses: String{
+        case StarkHouse = "STARK"
+        case LannisterHouse = "LANNISTERHOUSE"
+        case TargaryenHouse = "TARGARYENHOUSE"
+    }
+    
     var houses: [House] {
         //Creamos las casas
        
@@ -157,5 +163,10 @@ final class LocalFactory: HouseFactory {
     //se añade test en RepositoryTests
     func seasons(filteredBy filter: (Season) ->Bool) -> [Season]{
         return seasons.filter(filter)
+    }
+    
+    //añado test
+    func house(named houseName: Houses) -> House? {
+        return houses.filter { $0.name.uppercased() == houseName.rawValue.uppercased()}.first
     }
 }

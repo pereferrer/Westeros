@@ -73,4 +73,13 @@ class RepositoryTests: XCTestCase {
         })
         XCTAssertEqual(filteredSeasonList.count, 1)
     }
+    
+    //Test Para Probar el punto 8
+    func testLocalRepositoryReturnHouseByNameCaseInsensitively2(){
+        let stark = Repository.local.house(named: .StarkHouse)
+        XCTAssertNotNil(stark)
+        
+        let lannister = Repository.local.house(named: .LannisterHouse)
+        XCTAssertNotNil(lannister)
+    }
 }

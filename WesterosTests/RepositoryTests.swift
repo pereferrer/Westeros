@@ -75,11 +75,14 @@ class RepositoryTests: XCTestCase {
     }
     
     //Test Para Probar el punto 8
-    func testLocalRepositoryReturnHouseByNameCaseInsensitively2(){
+    func testLocalRepositoryReturnHouseTypeSafeAndAutocomplete(){
         let stark = Repository.local.house(named: .StarkHouse)
         XCTAssertNotNil(stark)
         
         let lannister = Repository.local.house(named: .LannisterHouse)
         XCTAssertNotNil(lannister)
+        
+        let targaryen = Repository.local.house(named: .TargaryenHouse)
+        XCTAssertNotNil(targaryen)
     }
 }

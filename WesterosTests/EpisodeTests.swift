@@ -107,7 +107,7 @@ class EpisodeTests: XCTestCase {
     
     //Test para comprobar CustomStringConvertible
     func testSeasonCustomStringConvertible(){
-        XCTAssertEqual(episodeOneSeasonOne.description, "Título: \(episodeOneSeasonOne.titulo), Fecha de emisión: \(episodeOneSeasonOne.fechaEmision), Season: \(episodeOneSeasonOne.season?.nombre ?? "")")
-        XCTAssertEqual(episodeTwoSeasonOne.description, "Título: \(episodeOneSeasonOne.titulo), Fecha de emisión: \(episodeOneSeasonOne.fechaEmision), Season: \(episodeOneSeasonOne.season?.nombre ?? "")")
+        let description = "Título: \(episodeOneSeasonOne.titulo), Fecha de emisión: \(episodeOneSeasonOne.fechaEmision), Season: \(String(describing: episodeOneSeasonOne.season!.nombre))"
+        XCTAssertEqual(episodeOneSeasonOne.description, description)
     }
 }

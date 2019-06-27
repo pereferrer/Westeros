@@ -28,8 +28,8 @@ final class LocalFactory: HouseFactory {
     
     enum Houses: String{
         case StarkHouse = "STARK"
-        case LannisterHouse = "LANNISTERHOUSE"
-        case TargaryenHouse = "TARGARYENHOUSE"
+        case LannisterHouse = "LANNISTER"
+        case TargaryenHouse = "TARGARYEN"
     }
     
     var houses: [House] {

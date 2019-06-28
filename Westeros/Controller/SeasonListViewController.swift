@@ -82,17 +82,35 @@ extension SeasonListViewController: UITableViewDataSource {
         //Averiguar que Season se ha pulsado
         let season = model[indexPath.row]
         
-        //Avisar al delegado
-        //Enviamos la infomarcion de que se ha selecciona una casa
-        delegate?.seasonListViewController(self, didSelectSeason: season)
         
-        //Mandamos la misma información a través de las notificaciones
-        let dictionary = [Constants.seasonKey: season.sortedEpisodes]
-        let notificationCenter = NotificationCenter.default
-        let notification = Notification(name: .seasonDidNotificationName,
-                                        object: self,
-                                        userInfo: dictionary)
-        notificationCenter.post(notification)
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            let seasonDetailViewController = SeasonDetailViewController(model: season)
+            navigationController?.pushViewController(seasonDetailViewController, animated: true)
+            break
+        case .pad:
+            //Avisar al delegado
+            //Enviamos la infomarcion de que se ha selecciona una casa
+            delegate?.seasonListViewController(self, didSelectSeason: season)
+            
+            //Mandamos la misma información a través de las notificaciones
+            let dictionary = [Constants.seasonKey: season.sortedEpisodes]
+            let notificationCenter = NotificationCenter.default
+            let notification = Notification(name: .seasonDidNotificationName,
+                                            object: self,
+                                            userInfo: dictionary)
+            notificationCenter.post(notification)
+            break
+        // It's an iPad
+        case .unspecified: break
+        // Uh, oh! What could it be?
+        case .tv:
+            break
+        case .carPlay:
+            break
+        @unknown default:
+            break
+        }
     }
 }
 

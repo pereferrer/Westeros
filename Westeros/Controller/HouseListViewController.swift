@@ -73,26 +73,45 @@ class HouseListViewController: UITableViewController {
         //Averiguar que casa se ha pulsado
         let house = model[indexPath.row]
         
-        //Avisar al delegado
-        //Enviamos la infomarcion de que se ha selecciona una casa
-        delegate?.houseListViewController(self, didSelectHouse: house)
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            let houseDetailViewController = HouseDetailViewController(model: house)
+            navigationController?.pushViewController(houseDetailViewController, animated: true)
+            break
+        case .pad:
+            //Avisar al delegado
+            //Enviamos la infomarcion de que se ha selecciona una casa
+            delegate?.houseListViewController(self, didSelectHouse: house)
+            
+            
+            //Mandamos la misma información a través de las notificaciones
+            let dictionary = [Constants.houseKey: house]
+            let notificationCenter = NotificationCenter.default
+            let notification = Notification(name: .houseDidNotificationName,
+                                            object: self,
+                                            userInfo: dictionary)
+            notificationCenter.post(notification)
+            
+            //Mandamos la misma información a través de las notificaciones
+            let members = [Constants.houseKey: house.sortedMembers]
+            let nc = NotificationCenter.default
+            let n = Notification(name: .houseDidNotificationName,
+                                 object: self,
+                                 userInfo: members)
+            nc.post(n)
+            break
+        // It's an iPad
+        case .unspecified: break
+            // Uh, oh! What could it be?
+        case .tv:
+            break
+        case .carPlay:
+            break
+        @unknown default:
+            break
+        }
         
         
-        //Mandamos la misma información a través de las notificaciones
-        let dictionary = [Constants.houseKey: house]
-        let notificationCenter = NotificationCenter.default
-        let notification = Notification(name: .houseDidNotificationName,
-                                        object: self,
-                                        userInfo: dictionary)
-        notificationCenter.post(notification)
-        
-        //Mandamos la misma información a través de las notificaciones
-        let members = [Constants.houseKey: house.sortedMembers]
-        let nc = NotificationCenter.default
-        let n = Notification(name: .houseDidNotificationName,
-                                        object: self,
-                                        userInfo: members)
-        nc.post(n)
         
         //Guardar la última casa seleccionada
         saveLastSelectedHouse(at: indexPath.row)
@@ -114,3 +133,5 @@ extension HouseListViewController {
         return model[lastIndex]
     }
 }
+
+

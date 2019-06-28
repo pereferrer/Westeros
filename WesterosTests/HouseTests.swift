@@ -56,28 +56,32 @@ class HouseTests: XCTestCase {
     
     //Given - When - Then
     func testHouseAddPersons(){
-        XCTAssertEqual(starkHouse.count, 0)
+        //Al haber realizado el punto 11 este test carece de sentido ya que aplicaria el test testAutomaticallyAddPersonToMembersOfHouse en el fichero de test de Person
         
-        starkHouse.addPerson(person: robb)
-        XCTAssertEqual(starkHouse.count, 1)
-        
-        starkHouse.addPerson(person: arya)
-        XCTAssertEqual(starkHouse.count, 2)
-        
-        starkHouse.addPerson(person: arya)
-        XCTAssertEqual(starkHouse.count, 2)
-        
-        starkHouse.addPerson(person: tyrion)
-        XCTAssertEqual(starkHouse.count, 2)
+//        XCTAssertEqual(starkHouse.count, 0)
+//
+//        starkHouse.addPerson(person: robb)
+//        XCTAssertEqual(starkHouse.count, 1)
+//
+//        starkHouse.addPerson(person: arya)
+//        XCTAssertEqual(starkHouse.count, 2)
+//
+//        starkHouse.addPerson(person: arya)
+//        XCTAssertEqual(starkHouse.count, 2)
+//
+//        starkHouse.addPerson(person: tyrion)
+//        XCTAssertEqual(starkHouse.count, 2)
     }
     
     func testHouseEquality() {
+        //Este test lo he modifico debido al punto 11 y como la starkHouse ya tenía miembros y el proxyEquality también le hacemos un  count de los miembros indicaba que jinxed era distinto a stark.
         //identidad
         XCTAssertEqual(starkHouse, starkHouse)
         //Igualdad
         let jinxed = House(name: "Stark", sigil: starkSigil, words: "Winter is coming", url: starkURL)
+        _ = Person(name: "Robb", alias: "El joven Lobo", house: jinxed)
+        _ = Person(name: "Arya", house: jinxed)
         XCTAssertEqual(starkHouse, jinxed)
-        //Desigualdad
         //Desigualdad
         XCTAssertNotEqual(starkHouse, lannisterHouse)
     }
@@ -88,8 +92,9 @@ class HouseTests: XCTestCase {
     }
     
     func testHouseAddPersonsAtOnce(){
-        starkHouse.add(persons: robb, arya, tyrion)
-        XCTAssertEqual(starkHouse.count, 2)
+        //Al haber realizado el punto 11 este test carece de sentido ya que aplicaria el test testAutomaticallyAddPersonToMembersOfHouse en el fichero de test de Person
+//        starkHouse.add(persons: robb, arya, tyrion)
+//        XCTAssertEqual(starkHouse.count, 2)
     }
     
     func testHouseSortedMembersReturnsASortedListOfMembers(){

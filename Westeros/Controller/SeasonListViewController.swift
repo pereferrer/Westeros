@@ -13,7 +13,7 @@ protocol SeasonListViewControllerDelegate: class{
     func seasonListViewController(_ viewController: SeasonListViewController, didSelectSeason season: Season)
 }
 
-class SeasonListViewController: UIViewController {
+final class SeasonListViewController: UIViewController {
     @IBOutlet weak var table: UITableView!
     
     enum Constants{
@@ -50,12 +50,10 @@ extension SeasonListViewController: UITableViewDelegate {
 extension SeasonListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return model.count
     }
     
@@ -63,13 +61,13 @@ extension SeasonListViewController: UITableViewDataSource {
         
         let cellId = "SeasonCell"
         
-        //Descubrir cual es la casa que tenemos que mostrar
+        //Descubrir cual es la Season que tenemos que mostrar
         let season = model[indexPath.row]
         
         //Crear una celda
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .default, reuseIdentifier: cellId)
         
-        //Sincronizar model(casa) y la vista(celda)
+        //Sincronizar model(Season) y la vista(celda)
         cell.textLabel?.text = season.nombre
         cell.detailTextLabel?.text = "Fecha de lanzamiento: \(season.fechaLanzamiento)"
         
@@ -82,7 +80,7 @@ extension SeasonListViewController: UITableViewDataSource {
         //Averiguar que Season se ha pulsado
         let season = model[indexPath.row]
         
-        
+        //Averiguamos el tipo de dispositivo que se está utilizando
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
             let seasonDetailViewController = SeasonDetailViewController(model: season)
@@ -101,9 +99,9 @@ extension SeasonListViewController: UITableViewDataSource {
                                             userInfo: dictionary)
             notificationCenter.post(notification)
             break
-        // It's an iPad
+        
         case .unspecified: break
-        // Uh, oh! What could it be?
+        
         case .tv:
             break
         case .carPlay:

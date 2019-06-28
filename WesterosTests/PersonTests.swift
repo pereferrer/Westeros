@@ -74,4 +74,9 @@ class PersonTests: XCTestCase {
         //Desigualdad
         XCTAssertNotEqual(ned, tyrion)
     }
+    
+    func testAutomaticallyAddPersonToMembersOfHouse(){
+        //En el valor pongo 2 debido a que en el setUp he añadido 2 personajes directamente.
+        XCTAssertEqual(starkHouse.sortedMembers.count, 2)
+    }
 }

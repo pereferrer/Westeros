@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SeasonDetailViewController: UIViewController {
+final class SeasonDetailViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -44,12 +44,10 @@ extension SeasonDetailViewController: UITableViewDelegate{
 
 extension SeasonDetailViewController: UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return model.sortedEpisodes.count
     }
     
@@ -57,13 +55,13 @@ extension SeasonDetailViewController: UITableViewDataSource{
         
         let cellId = "SeasonDetailCell"
         
-        //Descubrir cual es la casa que tenemos que mostrar
+        //Descubrir cual es el episodio que tenemos que mostrar
         let episode = model.sortedEpisodes[indexPath.row]
         
         //Crear una celda
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
         
-        //Sincronizar model(casa) y la vista(celda)
+        //Sincronizar model(episodio) y la vista(celda)
         cell.textLabel?.text = episode.titulo
         cell.detailTextLabel?.text = "Fecha de lanzamiento: \(episode.fechaEmision)"
         
@@ -94,7 +92,7 @@ extension SeasonDetailViewController {
     }
     
     @objc private func displayEpisodes(){
-        //Crear el wiki vc
+        //Crear el episode vc
         let episodeListViewController = EpisodeListViewController(model: model.sortedEpisodes)
         
         //Mostrarlo mediante un push navigation Controller

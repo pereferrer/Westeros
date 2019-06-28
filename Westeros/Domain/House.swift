@@ -11,7 +11,7 @@ import Foundation
 typealias Words = String
 typealias Members = Set<Person>
 
-final class House {
+ class House {
     
     let name: String
     let sigil: Sigil

@@ -25,6 +25,11 @@ class MemberListViewController: UIViewController {
         title = "Members"
     }
     
+    //Parte de la solucion Podeis hacer algo para que, en ese caso, se muestre de nuevo la lista de members de la casa que has seleccionado
+    deinit {
+        unsubscribeNotifications()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -36,13 +41,12 @@ class MemberListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        //Siempre que nos subscribirnos, debemos desubscribirnos
-        subscribeToNotifications()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        unsubscribeNotifications()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //Siempre que nos subscribirnos, debemos desubscribirnos
+        subscribeToNotifications()
     }
 }
 

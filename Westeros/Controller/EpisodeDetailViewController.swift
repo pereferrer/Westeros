@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EpisodeDetailViewController: UIViewController {
+final class EpisodeDetailViewController: UIViewController {
 
     @IBOutlet weak var fechaEmisionLabel: UILabel!
     @IBOutlet weak var temporadaLabel: UILabel!
@@ -22,6 +22,11 @@ class EpisodeDetailViewController: UIViewController {
         title = model.titulo
     }
     
+    deinit {
+        unsubscribeNotifications()
+
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -29,6 +34,7 @@ class EpisodeDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         descriptionTextView.isEditable = false
+        subscribeToNotifications()
         syncModelWithView()
     }
 }
@@ -41,11 +47,23 @@ extension EpisodeDetailViewController{
     }
 }
 
-//Mark: - Episode List View Controller Delegate
-extension EpisodeDetailViewController: EpisodeListViewControllerDelegate{
-    func episodeListViewController(_ viewController: EpisodeListViewController, didSelectSeason episode: Episode) {
-        model = episode
-        syncModelWithView()
+
+extension EpisodeDetailViewController{
+    private func subscribeToNotifications(){
+        let notificationCenter = NotificationCenter.default
+        //Nos damos de alta de las notifications
+        notificationCenter.addObserver(self, selector: #selector(seasonDidChange), name: Notification.Name.seasonDidNotificationName, object: nil)//Objeto que envia la notification
+    }
+    
+    private func unsubscribeNotifications(){
+        //nos damos de baja de las notificaciones
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.removeObserver(self)
+    }
+    
+    @objc private func seasonDidChange(notification: Notification){
+        if let vc = navigationController?.viewControllers.filter({ $0 is EpisodeListViewController }).first {
+            navigationController?.popToViewController(vc, animated: true)
+        }
     }
 }
-

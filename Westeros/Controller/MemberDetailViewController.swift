@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemberDetailViewController: UIViewController {
+final class MemberDetailViewController: UIViewController {
 
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -23,6 +23,10 @@ class MemberDetailViewController: UIViewController {
         title = model.name
     }
     
+    deinit {
+        self.unsubscribeNotifications()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -30,6 +34,7 @@ class MemberDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         syncModelWithView()
+        self.subscribeToNotifications()
     }
 }
 
@@ -41,3 +46,26 @@ extension MemberDetailViewController{
         aliasLabel.text = model.alias
     }
 }
+
+
+//Parte de la solucion Podeis hacer algo para que, en ese caso, se muestre de nuevo la lista de members de la casa que has seleccionado
+extension MemberDetailViewController{
+    private func subscribeToNotifications(){
+        let notificationCenter = NotificationCenter.default
+        //Nos damos de alta de las notifications
+        notificationCenter.addObserver(self, selector: #selector(houseDidChange), name: Notification.Name.houseDidNotificationName, object: nil)//Objeto que envia la notification
+    }
+    
+    private func unsubscribeNotifications(){
+        //nos damos de baja de las notificaciones
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.removeObserver(self)
+    }
+    
+    @objc private func houseDidChange(notification: Notification){
+        if let vc = navigationController?.viewControllers.filter({ $0 is MemberListViewController }).first {
+            navigationController?.popToViewController(vc, animated: true)
+        }
+    }
+}
+

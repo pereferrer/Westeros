@@ -44,8 +44,6 @@ class SeasonTests: XCTestCase {
         episodeOneSeasonTwo = Episode(titulo: "The North Remembers", fechaEmision: dateEpisodeOneSeasonTwo, resumen: "Tyrion arrives at King's Landing to take his father's place as Hand of the King. Stannis Baratheon plans to take the Iron Throne for his own. Robb tries to decide his next move in the war. The Night's Watch arrive at the house of Craster.", season: seasonTwo)
         episodeTwoSeasonTwo = Episode(titulo: "The Night Lands", fechaEmision: dateEpisodeTwoSeasonTwo, resumen: "Arya makes friends with Gendry. Tyrion tries to take control of the Small Council. Theon arrives at his home, Pyke, in order to persuade his father into helping Robb with the war. Jon tries to investigate Craster's secret.", season: seasonTwo)
         
-        //seasonOne.add(episodes: episodeOneSeasonOne, episodeTwoSeasonOne)
-        //seasonTwo.add(episodes: episodeOneSeasonTwo, episodeTwoSeasonTwo)
     }
     
     //Test para comprobar existencia de Season

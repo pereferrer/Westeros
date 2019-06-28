@@ -26,6 +26,10 @@ class EpisodeListViewController: UIViewController {
         title = "Episodes"
     }
     
+    deinit {
+        unsubscribeNotifications()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -39,11 +43,6 @@ class EpisodeListViewController: UIViewController {
         //Siempre que nos subscribirnos, debemos desubscribirnos
         subscribeToNotifications()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        unsubscribeNotifications()
-    }
 }
 
 extension EpisodeListViewController: UITableViewDelegate {
@@ -55,12 +54,10 @@ extension EpisodeListViewController: UITableViewDelegate {
 extension EpisodeListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return model.count
     }
     
@@ -84,10 +81,10 @@ extension EpisodeListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //Averiguar que Season se ha pulsado
+        //Averiguar que episodio se ha pulsado
         let season = model[indexPath.row]
         
-        //Crear el wiki vc
+        //Crear el episodeDetai vc
         let episodeDetailViewController = EpisodeDetailViewController(model: season)
         
         //Mostrarlo mediante un push navigation Controller
@@ -109,7 +106,7 @@ extension EpisodeListViewController{
     }
     
     @objc private func seasonDidChange(notification: Notification){
-        //averiguar lacasa
+        
         guard let dictionary = notification.userInfo else{
             return
         }

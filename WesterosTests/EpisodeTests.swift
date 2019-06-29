@@ -103,7 +103,6 @@ class EpisodeTests: XCTestCase {
         XCTAssertNotNil(episodeTwoSeasonTwo.hashValue)
     }
     
-    //Test para comprobar CustomStringConvertible
     
     //Test para comprobar CustomStringConvertible
     func testSeasonCustomStringConvertible(){
